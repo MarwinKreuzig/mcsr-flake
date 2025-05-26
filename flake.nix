@@ -13,32 +13,27 @@
       }:
       let glfw-patched = (pkgs.callPackage ./packages/glfw-patched/default.nix { });
       in {
-        options = {
-          programs.mcsr.enable = nixpkgs.lib.mkEnableOption "mcsr";
+        options.programs.mcsr = {
+          enable = nixpkgs.lib.mkEnableOption "mcsr";
+          
+          waywall.config = {
+            text = nixpkgs.lib.mkOption {
+              default = null;
+              type = nixpkgs.lib.types.nullOr nixpkgs.lib.types.lines;
+              description = ''
+                Text of the config file.
+              '';
+            };
+            source = nixpkgs.lib.mkOption {
+              type = nixpkgs.lib.types.nullOr nixpkgs.lib.types.path;
+              description = ''
+                Path of the source file of the config file. 
+              '';
+            };
+          };
         };
         config = nixpkgs.lib.mkIf config.programs.mcsr.enable {
-          xdg.configFile."waywall/init.lua".text= ''
-            local waywall = require("waywall")
-            local helpers = require("waywall.helpers")
-
-            local config = {
-                input = {
-                    layout = "us",
-                    repeat_rate = 40,
-                    repeat_delay = 300,
-
-                    sensitivity = 1.0,
-                    confine_pointer = false,
-                },
-                theme = {
-                    background = "#303030ff",
-                },
-            }
-
-            config.actions = {}
-
-            return config
-          '';
+          xdg.configFile."waywall/init.lua" = config.programs.mcsr.waywall.config;
 
           home.packages = with pkgs; [
             obs-studio
