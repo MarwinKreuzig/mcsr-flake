@@ -6,7 +6,7 @@
   };
 
   outputs = { self, nixpkgs }: {
-    homeModules.niri = {
+    homeModules.mcsr = {
       config,
       pkgs,
       ...
