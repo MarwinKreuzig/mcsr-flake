@@ -22,7 +22,7 @@
         (pkgs.fetchpatch
         {
           url = "https://raw.githubusercontent.com/tesselslate/waywall/be3e018bb5f7c25610da73cc320233a26dfce948/contrib/glfw.patch";
-          hash = lib.fakeSha256;
+          sha256 = lib.fakeSha256;
         })
       ];
 
