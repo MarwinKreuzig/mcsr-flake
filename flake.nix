@@ -11,12 +11,11 @@
       , pkgs
       , ...
       }:
-      let cfg = config.programs.mcsr;
-      in {
+      {
         options = {
           programs.mcsr.enable = nixpkgs.lib.mkEnableOption "mcsr";
         };
-        config = nixpkgs.lib.mkIf cfg.enable {
+        config = nixpkgs.lib.mkIf config.programs.mcsr.enable {
           home.packages = with pkgs; [
             obs-studio
             prismlauncher
