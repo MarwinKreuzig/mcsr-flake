@@ -6,6 +6,11 @@
   };
 
   outputs = { self, nixpkgs }: {
+    homeModules.config = {
+      config, lib, pkgs, ...
+    }: {
+       programs.mcsr.enable = lib.mkEnableOption "mcsr" ;
+    };
     homeModules.mcsr = {
       config,
       pkgs,
