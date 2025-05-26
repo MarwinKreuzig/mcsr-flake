@@ -19,7 +19,7 @@
         config = nixpkgs.lib.mkIf config.programs.mcsr.enable {
           nixpkgs.overlays = [
             (final: prev: {
-              prismlauncher = (prev.prismlauncher.override { glfw-minecraft = glfw-patched; });
+              prismlauncher = (prev.prismlauncher.override { glfw3-minecraft = glfw-patched; });
             })
           ];
           home.packages = with pkgs; [
