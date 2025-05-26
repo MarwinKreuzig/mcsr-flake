@@ -41,12 +41,12 @@
       wayland-protocols
       libxkbcommon
       xorg.libX11
-      libXrandr
-      libXinerama
-      libXcursor
-      libXi
-      libXext
-      libXxf86vm
+      xorg.libXrandr
+      xorg.libXinerama
+      xorg.libXcursor
+      xorg.libXi
+      xorg.libXext
+      xorg.libXxf86vm
     ]);
 
     postPatch = lib.optionalString pkgs.stdenv.hostPlatform.isLinux ''
