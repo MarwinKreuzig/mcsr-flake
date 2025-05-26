@@ -6,27 +6,26 @@
   };
 
   outputs = { self, nixpkgs }: {
-    homeModules.config = {
-      config, lib, pkgs, ...
-    }: {
-       programs.mcsr.enable = lib.mkEnableOption "mcsr" ;
-    };
-    homeModules.mcsr = {
-      config,
-      pkgs,
-      ...
-    }: let cfg = config.programs.mcsr;
-    in {
-      config = nixpkgs.lib.mkIf cfg.enable {
-        home.packages = with pkgs; [
+    homeModules.mcsr =
+      { config
+      , pkgs
+      , ...
+      }:
+      let cfg = config.programs.mcsr;
+      in {
+        options = {
+          programs.mcsr.enable = nixpkgs.lib.mkEnableOption "mcsr";
+        };
+        config = nixpkgs.lib.mkIf cfg.enable {
+          home.packages = with pkgs; [
             obs-studio
             prismlauncher
             waywall
             (callPackage ./packages/modcheck/default.nix { })
             (callPackage ./packages/ninjabrainbot/default.nix { })
             (callPackage ./packages/glfw-patched/default.nix { })
-        ];
+          ];
+        };
       };
-    };
   };
 }
