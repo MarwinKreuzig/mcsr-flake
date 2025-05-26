@@ -19,7 +19,7 @@
         config = nixpkgs.lib.mkIf config.programs.mcsr.enable {
           home.packages = with pkgs; [
             obs-studio
-            (prev.prismlauncher.override { glfw3-minecraft = glfw-patched; })
+            (prismlauncher.override { glfw3-minecraft = glfw-patched; })
             waywall
             (callPackage ./packages/modcheck/default.nix { })
             (callPackage ./packages/ninjabrainbot/default.nix { })
