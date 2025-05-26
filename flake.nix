@@ -25,7 +25,7 @@
               '';
             };
             source = nixpkgs.lib.mkOption {
-              type = nixpkgs.lib.types.nullOr nixpkgs.lib.types.path;
+              type = nixpkgs.lib.types.path;
               description = ''
                 Path of the source file of the config file. 
               '';
