@@ -40,7 +40,7 @@
       wayland
       wayland-protocols
       libxkbcommon
-      libX11
+      xorg.libX11
       libXrandr
       libXinerama
       libXcursor
