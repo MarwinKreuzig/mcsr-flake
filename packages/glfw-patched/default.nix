@@ -19,10 +19,10 @@
       [
         # ./x11.patch
         # TODO: include the minecraft patch
-        pkgs.stdenv.fetchpatch
+        pkgs.fetchpatch
         {
           url = "https://raw.githubusercontent.com/tesselslate/waywall/be3e018bb5f7c25610da73cc320233a26dfce948/contrib/glfw.patch";
-          hash = "";
+          hash = lib.fakeSha256;
         }
       ];
 
