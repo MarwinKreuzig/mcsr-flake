@@ -33,7 +33,8 @@
           };
         };
         config = nixpkgs.lib.mkIf config.programs.mcsr.enable {
-          xdg.configFile."waywall/init.lua" = config.programs.mcsr.waywall.config;
+          xdg.configFile."waywall/init.lua".text = config.programs.mcsr.waywall.config.text;
+          xdg.configFile."waywall/init.lua".source = config.programs.mcsr.waywall.config.source;
 
           home.packages = with pkgs; [
             obs-studio
