@@ -17,14 +17,9 @@
           programs.mcsr.enable = nixpkgs.lib.mkEnableOption "mcsr";
         };
         config = nixpkgs.lib.mkIf config.programs.mcsr.enable {
-          nixpkgs.overlays = [
-            (final: prev: {
-              prismlauncher = (prev.prismlauncher.override { glfw3-minecraft = glfw-patched; });
-            })
-          ];
           home.packages = with pkgs; [
             obs-studio
-            prismlauncher
+            (prev.prismlauncher.override { glfw3-minecraft = glfw-patched; })
             waywall
             (callPackage ./packages/modcheck/default.nix { })
             (callPackage ./packages/ninjabrainbot/default.nix { })
