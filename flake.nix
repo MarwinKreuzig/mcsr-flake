@@ -17,6 +17,8 @@
           programs.mcsr.enable = nixpkgs.lib.mkEnableOption "mcsr";
         };
         config = nixpkgs.lib.mkIf config.programs.mcsr.enable {
+          xdg.configFile."waywall/init.lua" = {};
+
           home.packages = with pkgs; [
             obs-studio
             (prismlauncher.override { glfw3-minecraft = glfw-patched; })
