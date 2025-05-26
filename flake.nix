@@ -11,7 +11,7 @@
       , pkgs
       , ...
       }:
-      let glfw-patched = (pkgs.lib.callPackage ./packages/glfw-patched/default.nix { });
+      let glfw-patched = (pkgs.callPackage ./packages/glfw-patched/default.nix { });
       in {
         options = {
           programs.mcsr.enable = nixpkgs.lib.mkEnableOption "mcsr";
