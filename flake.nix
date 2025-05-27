@@ -11,7 +11,7 @@
       , pkgs
       , ...
       }:
-      let glfw-patched = pkgs.glfw3-minecraft.overrideAttrs (finalAttrs: previousAttrs: {
+      let glfw-patched = pkgs.glfw.overrideAttrs (finalAttrs: previousAttrs: {
           pname = "glfw-mcsr";
           patches = previousAttrs.patches ++ [
             (pkgs.fetchpatch
