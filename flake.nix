@@ -50,7 +50,7 @@
             glfw-patched
 
             (waywall.overrideAttrs (finalAttrs: previousAttrs: {
-                patches = previousAttrs.patches ++ [
+                patches = (previousAttrs.patches or [ ]) ++ [
                     ./ninjabrainbot-hack.patch
                 ];
             }))
