@@ -35,7 +35,7 @@ pkgs.maven.buildMavenPackage rec {
 
     makeWrapper ${pkgs.jre}/bin/java $out/bin/ninjabrainbot \
       --prefix LD_LIBRARY_PATH : "${pkgs.lib.makeLibraryPath [ pkgs.libxkbcommon pkgs.xorg.libX11 pkgs.xorg.libXt ]}" \
-      --add-flags "-jar $out/share/ninjabrainbot/ninjabrainbot-${version}-jar-with-dependencies.jar"
+      --add-flags "-DSwing.aatext=TRUE -Dawt.useSystemAAFontSettings=on -jar $out/share/ninjabrainbot/ninjabrainbot-${version}-jar-with-dependencies.jar"
 
     runHook postInstall
   '';
