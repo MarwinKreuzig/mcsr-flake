@@ -51,6 +51,9 @@
 
             waywall
             # runtime dependencies of waywall
+            # this is definitely necessary, I tested it
+            xwayland
+            # these are the compile time dependencies of the package (according to waywall docs all dependencies need to be present at compile and runtime)
             libGL
             libspng
             libxkbcommon
@@ -58,7 +61,10 @@
             wayland
             wayland-protocols
             xorg.libxcb
-            xwayland
+            # these might be necessary based on the waywall docs
+            egl-wayland
+            xorg.libXcomposite
+            xorg.libXres
           ];
         };
       };
