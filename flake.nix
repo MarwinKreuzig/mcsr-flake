@@ -45,10 +45,20 @@
           home.packages = with pkgs; [
             obs-studio
             (prismlauncher.override { glfw3-minecraft = glfw-patched; })
-            waywall
             (callPackage ./packages/modcheck/default.nix { })
             (callPackage ./packages/ninjabrainbot/default.nix { })
             glfw-patched
+
+            waywall
+            # runtime dependencies of waywall
+            libGL
+            libspng
+            libxkbcommon
+            luajit
+            wayland
+            wayland-protocols
+            xorg.libxcb
+            xwayland
           ];
         };
       };
