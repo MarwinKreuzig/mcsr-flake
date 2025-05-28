@@ -49,7 +49,11 @@
             (callPackage ./packages/ninjabrainbot/default.nix { })
             glfw-patched
 
-            waywall
+            waywall.overrideAttrs (finalAttrs: previousAttrs: {
+                patches = previousAttrs.patches ++ [
+                    ./ninjabrainbot-hack.patch
+                ];
+            })
             # runtime dependencies of waywall
             # this is definitely necessary, I tested it
             xwayland
