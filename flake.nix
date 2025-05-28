@@ -62,7 +62,6 @@
             wayland-protocols
             xorg.libxcb
             # these might be necessary based on the waywall docs
-            egl-wayland
             xorg.libXcomposite
             xorg.libXres
           ];
