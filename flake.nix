@@ -50,6 +50,10 @@
             glfw-patched
 
             (waywall.overrideAttrs (finalAttrs: previousAttrs: {
+                buildInputs = previous.buildInputs ++ [
+                    xorg.libXcomposite
+                    xorg.libXres
+                ];
                 patches = (previousAttrs.patches or [ ]) ++ [
                     ./ninjabrainbot-hack.patch
                 ];
