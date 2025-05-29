@@ -55,7 +55,7 @@
                     xorg.libXres
                 ];
                 patches = (previousAttrs.patches or [ ]) ++ [
-                    ./ninjabrainbot-hack.patch
+#                    ./ninjabrainbot-hack.patch
                 ];
             }))
             # runtime dependencies of waywall
