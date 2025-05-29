@@ -50,7 +50,7 @@
             glfw-patched
 
             (waywall.overrideAttrs (finalAttrs: previousAttrs: {
-                buildInputs = previous.buildInputs ++ [
+                buildInputs = previousAttrs.buildInputs ++ [
                     xorg.libXcomposite
                     xorg.libXres
                 ];
