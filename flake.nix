@@ -51,11 +51,12 @@
 
             (waywall.overrideAttrs (finalAttrs: previousAttrs: {
                 buildInputs = previousAttrs.buildInputs ++ [
+                    # I thought these might somehow fix the ninjabrainbot issue but they don't ¯\_(ツ)_/¯
                     xorg.libXcomposite
                     xorg.libXres
                 ];
                 patches = (previousAttrs.patches or [ ]) ++ [
-#                    ./ninjabrainbot-hack.patch
+                    ./ninjabrainbot-hack.patch
                 ];
             }))
             # runtime dependencies of waywall
