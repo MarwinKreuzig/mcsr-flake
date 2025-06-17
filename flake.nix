@@ -50,7 +50,7 @@
             (callPackage ./packages/waywall/default.nix { })
             glfw-patched
 
-            (waywall.overrideAttrs (finalAttrs: previousAttrs: {
+            /*(waywall.overrideAttrs (finalAttrs: previousAttrs: {
                 buildInputs = previousAttrs.buildInputs ++ [
                     # I thought these might somehow fix the ninjabrainbot issue but they don't ¯\_(ツ)_/¯
                     xorg.libXcomposite
@@ -59,10 +59,11 @@
                 patches = (previousAttrs.patches or [ ]) ++ [
                     ./ninjabrainbot-hack.patch
                 ];
-            }))
+            }))*/
             # runtime dependencies of waywall
             # this is definitely necessary, I tested it
             xwayland
+            # The stuff below doesn't seem to make a difference but I include it anyway just in case
             # these are the compile time dependencies of the package (according to waywall docs all dependencies need to be present at compile and runtime)
             libGL
             libspng
