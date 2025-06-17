@@ -47,6 +47,7 @@
             (prismlauncher.override { glfw3-minecraft = glfw-patched; })
             (callPackage ./packages/modcheck/default.nix { })
             (callPackage ./packages/ninjabrainbot/default.nix { })
+            (callPackage ./packages/waywall/default.nix { })
             glfw-patched
 
             (waywall.overrideAttrs (finalAttrs: previousAttrs: {
