@@ -3,10 +3,6 @@ stdenv.mkDerivation {
   pname = "waywall";
   version = "0-unstable-2025-07-14";
 
-  patches = [
-    ./ninjabrainbot-hack.patch
-  ];
-
   src = pkgs.fetchFromGitHub {
     owner = "tesselslate";
     repo = "waywall";
