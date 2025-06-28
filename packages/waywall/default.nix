@@ -1,7 +1,7 @@
 { pkgs, stdenv, lib }:
 stdenv.mkDerivation {
   pname = "waywall";
-  version = "0-unstable-2025-07-14";
+  version = "0-unstable-2025-06-27";
 
   patches = [
     ./ninjabrainbot-hack.patch
