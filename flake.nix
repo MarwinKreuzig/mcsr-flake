@@ -77,7 +77,10 @@
           };
           config = nixpkgs.lib.mkIf config.programs.mcsr.enable {
             home.packages = with pkgs; [
-              obs-studio
+              # obs with hardware encoding on nvidia enabled
+              obs-studio.override {
+                cudaSupport = true;
+              }
               (prismlauncher.override { glfw3-minecraft = glfw-patched; })
               (callPackage ./packages/modcheck/default.nix { })
               (callPackage ./packages/ninjabrainbot/default.nix { })
