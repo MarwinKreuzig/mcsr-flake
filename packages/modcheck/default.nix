@@ -2,11 +2,11 @@
 with pkgs; (
   stdenv.mkDerivation (finalAttrs: rec {
     pname = "modcheck";
-    version = "3.0.2";
+    version = "3.0.3";
 
     src = fetchurl {
       url = "https://github.com/tildejustin/modcheck/releases/download/${version}/modcheck-${version}.jar";
-      hash = "sha256-mbuP6ohGNPjKEE5FTZlG9QV8G76zqMR4EoZiYez+q2M=";
+      hash = "sha256-gWAk2H9ONR/JN6Nt+v5Sdo9DzxqmOpZdGliz6YfQAps=";
     };
     dontUnpack = true;
 
