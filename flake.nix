@@ -82,6 +82,7 @@
                 cudaSupport = true;
               })
               (prismlauncher.override { glfw3-minecraft = glfw-patched; })
+              graalvm-ce
               (callPackage ./packages/modcheck/default.nix { })
               (callPackage ./packages/ninjabrainbot/default.nix { })
               (callPackage ./packages/waywall/default.nix { })
