@@ -3,9 +3,10 @@
 
   inputs = {
     nixpkgs.url = "github:nixos/nixpkgs?ref=nixos-unstable";
+    pinned-graal-nixpkgs.url = "github:nixos/nixpkgs/5ed627539ac84809c78b2dd6d26a5cebeb5ae269";
   };
 
-  outputs = { self, nixpkgs }:
+  outputs = { self, nixpkgs, pinned-graal-nixpkgs }:
     {
       packages."x86_64-linux" =
         let
@@ -75,20 +76,22 @@
               };
             };
           };
-          config = nixpkgs.lib.mkIf config.programs.mcsr.enable {
-            home.packages = with pkgs; [
-              # obs with hardware encoding on nvidia enabled
-              (obs-studio.override {
-                cudaSupport = true;
-              })
-              (prismlauncher.override { glfw3-minecraft = glfw-patched; })
-              graalvm-ce
-              (callPackage ./packages/modcheck/default.nix { })
-              (callPackage ./packages/ninjabrainbot/default.nix { })
-              (callPackage ./packages/waywall/default.nix { })
-              glfw-patched
+          config = nixpkgs.lib.mkIf config.programs.mcsr.enable
+            (
+              let graalpkgs = import pinned-graal-nixpkgs { system = "x86_64-linux"; }; in {
+                home.packages = with pkgs; [
+                  # obs with hardware encoding on nvidia enabled
+                  (obs-studio.override {
+                    cudaSupport = true;
+                  })
+                  (prismlauncher.override { glfw3-minecraft = glfw-patched; })
+                  graalpkgs.graalvm-ce
+                  (callPackage ./packages/modcheck/default.nix { })
+                  (callPackage ./packages/ninjabrainbot/default.nix { })
+                  (callPackage ./packages/waywall/default.nix { })
+                  glfw-patched
 
-              /*(waywall.overrideAttrs (finalAttrs: previousAttrs: {
+                  /*(waywall.overrideAttrs (finalAttrs: previousAttrs: {
                 buildInputs = previousAttrs.buildInputs ++ [
                     # I thought these might somehow fix the ninjabrainbot issue but they don't ¯\_(ツ)_/¯
                     xorg.libXcomposite
@@ -97,24 +100,25 @@
                 patches = (previousAttrs.patches or [ ]) ++ [
                     ./ninjabrainbot-hack.patch
                 ];
-              }))*/
-              # runtime dependencies of waywall
-              # this is definitely necessary, I tested it
-              xwayland
-              # The stuff below doesn't seem to make a difference but I include it anyway just in case
-              # these are the compile time dependencies of the package (according to waywall docs all dependencies need to be present at compile and runtime)
-              libGL
-              libspng
-              libxkbcommon
-              luajit
-              wayland
-              wayland-protocols
-              xorg.libxcb
-              # these might be necessary based on the waywall docs
-              xorg.libXcomposite
-              xorg.libXres
-            ];
-          };
+                  }))*/
+                  # runtime dependencies of waywall
+                  # this is definitely necessary, I tested it
+                  xwayland
+                  # The stuff below doesn't seem to make a difference but I include it anyway just in case
+                  # these are the compile time dependencies of the package (according to waywall docs all dependencies need to be present at compile and runtime)
+                  libGL
+                  libspng
+                  libxkbcommon
+                  luajit
+                  wayland
+                  wayland-protocols
+                  xorg.libxcb
+                  # these might be necessary based on the waywall docs
+                  xorg.libXcomposite
+                  xorg.libXres
+                ];
+              }
+            );
         };
     };
 }
