@@ -13,17 +13,6 @@
           pkgs = import nixpkgs { system = "x86_64-linux"; };
         in
         rec {
-          all =
-            pkgs.symlinkJoin {
-              name = "all";
-              paths = [
-                prismlauncher
-                modcheck
-                ninjabrainbot
-                waywall
-                glfw-patched
-              ];
-            };
           prismlauncher = (pkgs.prismlauncher.override { glfw3-minecraft = glfw-patched; });
           modcheck = (pkgs.callPackage ./packages/modcheck/default.nix { });
           ninjabrainbot = (pkgs.callPackage ./packages/ninjabrainbot/default.nix { });
