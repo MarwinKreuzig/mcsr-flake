@@ -49,20 +49,12 @@
           options.programs.mcsr = {
             enable = nixpkgs.lib.mkEnableOption "mcsr";
 
-            waywall.config = {
-              text = nixpkgs.lib.mkOption {
-                default = null;
-                type = nixpkgs.lib.types.nullOr nixpkgs.lib.types.lines;
-                description = ''
-                  Text of the config file.
-                '';
-              };
-              source = nixpkgs.lib.mkOption {
-                type = nixpkgs.lib.types.path;
-                description = ''
-                  Path of the source file of the config file. 
-                '';
-              };
+            waywall.config = nixpkgs.lib.mkOption {
+              default = "";
+              type = nixpkgs.lib.types.lines;
+              description = ''
+                Text of the config file.
+              '';
             };
           };
           config = nixpkgs.lib.mkIf config.programs.mcsr.enable
@@ -106,6 +98,8 @@
                   xorg.libXcomposite
                   xorg.libXres
                 ];
+
+                xdg.configFile."waywall/init.lua".text = config.programs.mcsr.waywall.config;
               }
             );
         };
