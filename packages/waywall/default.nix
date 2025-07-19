@@ -11,7 +11,7 @@ stdenv.mkDerivation {
     owner = "tesselslate";
     repo = "waywall";
     rev = "992fbfd2fcc62570ee8e79a53efeb0e5b770ec4e";
-    hash = lib.fakeHash;
+    hash = "sha256-b+Lc1VGpeNwcxRAaDvsE5Gkx7DVOl3HyHP19YJyH/OY=";
   };
 
   nativeBuildInputs = with pkgs; [
