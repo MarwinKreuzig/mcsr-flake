@@ -82,21 +82,8 @@
                     ./ninjabrainbot-hack.patch
                 ];
                   }))*/
-                  # runtime dependencies of waywall
-                  # this is definitely necessary, I tested it
+                  # the presence of xwayland fixes performance issues when running waywall
                   xwayland
-                  # The stuff below doesn't seem to make a difference but I include it anyway just in case
-                  # these are the compile time dependencies of the package (according to waywall docs all dependencies need to be present at compile and runtime)
-                  libGL
-                  libspng
-                  libxkbcommon
-                  luajit
-                  wayland
-                  wayland-protocols
-                  xorg.libxcb
-                  # these might be necessary based on the waywall docs
-                  xorg.libXcomposite
-                  xorg.libXres
                 ];
 
                 xdg.configFile."waywall/init.lua".text = config.programs.mcsr.waywall.config;

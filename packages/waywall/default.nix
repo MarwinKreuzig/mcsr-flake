@@ -4,7 +4,7 @@ stdenv.mkDerivation {
   version = "0-unstable-2025-07-14";
 
   patches = [
-    ./ninjabrainbot-hack.patch
+    # ./ninjabrainbot-hack.patch
   ];
 
   src = pkgs.fetchFromGitHub {
