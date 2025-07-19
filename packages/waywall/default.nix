@@ -1,7 +1,7 @@
 { pkgs, stdenv, lib }:
 stdenv.mkDerivation {
   pname = "waywall";
-  version = "0-unstable-2025-07-14";
+  version = "0-unstable-2025-07-19";
 
   patches = [
     # ./ninjabrainbot-hack.patch
@@ -10,8 +10,8 @@ stdenv.mkDerivation {
   src = pkgs.fetchFromGitHub {
     owner = "tesselslate";
     repo = "waywall";
-    rev = "90fafbe51e044738276688eb407913983044fccb";
-    hash = "sha256-ZaHZCIrhcbwbfV7xKmOjyuH06PwvCKAL+mkm+7gmNBI=";
+    rev = "992fbfd2fcc62570ee8e79a53efeb0e5b770ec4e";
+    hash = lib.fakeHash;
   };
 
   nativeBuildInputs = with pkgs; [
