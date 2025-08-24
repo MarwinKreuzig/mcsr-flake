@@ -14,12 +14,12 @@
         modcheck = (pkgs.callPackage ./packages/modcheck/default.nix { });
         ninjabrainbot = (pkgs.callPackage ./packages/ninjabrainbot/default.nix { });
         waywall = pkgs.waywall.overrideAttrs (finalAttrs: previousAttrs: {
-          version = "0-unstable-2025-08-22";
+          version = "0-unstable-2025-08-24";
           src = pkgs.fetchFromGitHub {
             owner = "tesselslate";
             repo = "waywall";
-            rev = "6c410d995d76d274de6446e0be6fa7571b764930";
-            hash = "sha256-j5RmnHVYsHE69j4Pa5b9WVFVRwsafNuNsEBNLONOick=";
+            rev = "822c5a329798154ee202ee7b42fa9a6ae9a54366";
+            hash = "sha256-tN5xHPOXV5G8VrzmkS6YY/xTxCnaZPqGHQghMMSzSKU=";
           };
         });
         glfw-patched = pkgs.glfw.overrideAttrs (finalAttrs: previousAttrs: {
