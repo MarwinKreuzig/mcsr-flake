@@ -18,9 +18,10 @@
           src = pkgs.fetchFromGitHub {
             owner = "tesselslate";
             repo = "waywall";
-            rev = "822c5a329798154ee202ee7b42fa9a6ae9a54366";
-            hash = "sha256-tN5xHPOXV5G8VrzmkS6YY/xTxCnaZPqGHQghMMSzSKU=";
+            rev = "ad569de1ddae6b034c7095795a42f044746a55a7";
+            hash = "sha256-CzP6PFYC6yVxUAxkJ4Zhm4Zf4Qt8u4WjXUYfkgc6nyU=";
           };
+          patches = [ ./0001-nvidia-fix.patch ];
         });
         glfw-patched = pkgs.glfw.overrideAttrs (finalAttrs: previousAttrs: {
           pname = "glfw-mcsr";

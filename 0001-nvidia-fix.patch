@@ -1,0 +1,40 @@
+From 604936bdb771b0db05bde05bf236bfc4492fa9bb Mon Sep 17 00:00:00 2001
+From: Marwin Kreuzig <marwin@kreuzig.info>
+Date: Mon, 25 Aug 2025 21:21:17 +0200
+Subject: [PATCH] nvidia fix
+
+---
+ waywall/server/server.c | 17 -----------------
+ 1 file changed, 17 deletions(-)
+
+diff --git a/waywall/server/server.c b/waywall/server/server.c
+index 2cbd6a7..19f245a 100644
+--- a/waywall/server/server.c
++++ b/waywall/server/server.c
+@@ -118,23 +118,6 @@ backend_display_tick(int fd, uint32_t mask, void *data) {
+     }
+ 
+     int num_dispatched = 0;
+-    if (mask & WL_EVENT_READABLE) {
+-        while (wl_display_prepare_read(server->backend->display) != 0) {
+-            dispatch_pending(server->backend->display, &num_dispatched);
+-
+-            if (num_dispatched == -1) {
+-                ww_log(LOG_ERROR, "failed to dispatch events on remote display");
+-                wl_display_terminate(server->display);
+-                return 0;
+-            }
+-        }
+-
+-        if (wl_display_read_events(server->backend->display) != 0) {
+-            ww_log(LOG_ERROR, "failed to read events on remote display");
+-            wl_display_terminate(server->display);
+-            return 0;
+-        }
+-    }
+ 
+     dispatch_pending(server->backend->display, &num_dispatched);
+     wl_display_flush(server->backend->display);
+-- 
+2.50.1
+
